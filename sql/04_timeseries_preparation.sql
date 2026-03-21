@@ -18,6 +18,7 @@ INTERVAL '1 day'
 FROM superstore_data_staging;
 
 -- Build complete daily time series dataset
+CREATE VIEW time_series_sales  AS
 SELECT d.calendar_date,
        COALESCE(daily_total_sales_revenue,0) AS daily_total_sales_revenue,
        COALESCE(daily_total_no_of_orders,0) AS daily_total_no_of_product_sold
