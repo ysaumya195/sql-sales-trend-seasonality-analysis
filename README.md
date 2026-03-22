@@ -1,105 +1,165 @@
+# 📊 SQL Sales Trend & Seasonality Analysis
 
-📊 SQL Sales Trend & Seasonality Analysis
+## 📌 Project Overview
 
- 📌 Project Overview
-This project performs an end-to-end analysis of retail sales data using PostgreSQL.  
-The objective is to uncover trends, growth patterns, and seasonality in sales performance.
+This project analyzes retail sales data using PostgreSQL to identify trends, growth patterns, and seasonality in business performance.
 
-The analysis follows a structured data workflow:
-- Data Import
-- Data Profiling
-- Data Cleaning
-- Time Series Preparation
-- Trend Analysis (Moving Averages)
-- Growth Analysis (Monthly Growth Rate)
-- Seasonality Detection
+The objective is to demonstrate how SQL can be used for end-to-end analytical workflows, including time-series analysis and business metric evaluation.
 
 ---
 
 ## 🗂️ Dataset
-The dataset represents retail sales transactions and includes:
-10K Rows
-11 Columns including
 
-Data was cleaned and transformed into a time-series format for analysis.
+The analysis is based on the **Superstore Sales Dataset** covering the period:
 
----
+**2014 – 2017**
 
-## ⚙️ Tools & Technologies
-- **PostgreSQL**
-- **pgAdmin**
-- **SQL (Window Functions, CTEs, Aggregations)**
+**Dataset Size:** ~10,000 rows, 11 columns  
+
+### Key Fields:
+- order_id  
+- order_date  
+- customer_id  
+- product_id  
+- product_name  
+- sales  
+- profit  
 
 ---
 
 ## 🔄 Project Workflow
 
 ### 1. Data Import
-- Imported raw CSV data into PostgreSQL
+- Imported raw CSV data into PostgreSQL  
+- Date columns were initially stored as text due to formatting inconsistencies  
+- Converted to proper `DATE` format during cleaning  
+
+---
 
 ### 2. Data Profiling
-- Checked for null values, duplicates, and inconsistencies
+Performed initial data exploration to understand structure and quality:
+
+- Row count and dataset size  
+- Date range validation  
+- Distinct value checks  
+- Duplicate detection  
+- Missing value analysis  
+
+---
 
 ### 3. Data Cleaning
-- Removed duplicates
-- Standardized formats
-- Converted date fields
+- Converted string date fields using `TO_DATE()`  
+- Removed complete duplicate records  
+- Ensured consistency in data types  
+
+---
 
 ### 4. Time Series Preparation
-- Created continuous date series
-- Aggregated daily revenue
-- Handled missing dates using `COALESCE`
-
-### 5. Moving Average Analysis
-- Calculated 7-day and 30-day moving averages
-- Smoothed short-term fluctuations
-- Compared daily revenue with trend lines
-
-### 6. Monthly Growth Analysis
-- Aggregated monthly revenue
-- Calculated month-over-month growth using `LAG()`
-- Identified growth and decline periods
-
-### 7. Seasonality Detection
-- Calculated seasonality index using monthly averages
-- Identified high and low demand periods
+- Created a **calendar table** using `generate_series()`  
+- Built a continuous date range to include missing dates  
+- Used `COALESCE()` to handle zero-sales days  
 
 ---
 
-## 📈 Key Analysis
+### 5. Trend Analysis
+Calculated daily revenue and applied moving averages:
 
-### 🔹 Moving Averages
-- Used to reduce noise in daily sales data
-- Helped identify underlying patterns
+- 7-day moving average  
+- 30-day moving average  
 
-### 🔹 Monthly Growth Rate
-- Revealed inconsistent growth patterns
-- Highlighted sharp fluctuations in performance
-
-### 🔹 Seasonality Index
-- Identified recurring monthly performance patterns
-- Highlighted peak sales periods
+These metrics help smooth short-term fluctuations and reveal underlying patterns.
 
 ---
 
-## 💡 Key Insights
+### 6. Growth Analysis
+Calculated key business growth metric:
 
-- Revenue is highly volatile and driven by short-term spikes
-- No consistent long-term growth trend observed
-- Monthly performance fluctuates significantly
-- Sales are influenced by intermittent high-performing periods
-- Peak sales period begins in **September** and continues through **December**
-- Highest performance observed in **November and December**
-- Retail sales show strong **seasonality patterns**
+- **Month-over-Month (MoM) Growth**
+
+This measures how sales performance changes over time and highlights periods of growth and decline.
 
 ---
 
-## 🧠 Summary
+### 7. Seasonality Analysis
+Identified recurring patterns using **Seasonality Index**:
 
-- **Trend** → No consistent long-term stability  
-- **Growth** → Irregular and fluctuating  
-- **Seasonality** → Strong, with peak demand from September to December  
+**Formula:**
+Seasonality Index =
+(Average Daily Revenue for Month / Overall Average Daily Revenue) × 100
+
+
+**Interpretation:**
+- Index > 100 → Above-average performance  
+- Index < 100 → Below-average performance  
+
+This helps identify high-demand and low-demand periods.
 
 ---
 
+## 🛠️ Tools Used
+
+- PostgreSQL  
+- pgAdmin  
+- SQL  
+- GitHub
+
+  ---
+
+## 🧠 Key SQL Concepts Used
+
+- Window Functions (`AVG() OVER`, `LAG()`)  
+- Moving Averages  
+- Date Functions (`DATE_TRUNC`, `EXTRACT`)  
+- CTEs (Common Table Expressions)  
+- Views  
+- Aggregations  
+- Time Series Analysis  
+
+---
+
+## 📈 Key Insights
+
+- Sales are highly volatile with no consistent long-term trend  
+- Revenue growth is irregular, with frequent fluctuations between growth and decline  
+- Performance is driven by intermittent high-revenue periods rather than steady progression  
+- A strong seasonal pattern is observed, with peak demand beginning in **September**  
+- Highest sales performance occurs during **November and December**  
+- Sales activity shows a clear concentration in **late Q3 and Q4**
 ## 📁 Project Structure
+
+
+sql/
+│
+├── 01_data_import.sql
+├── 02_data_profiling.sql
+├── 03_data_cleaning.sql
+├── 04_time_series_preparation.sql
+├── 05_moving_averages.sql
+├── 06_monthly_growth_analysis.sql
+├── 07_seasonality_detection.sql
+├── 08_business_insights.sql
+
+
+---
+
+## 🚀 Project Outcome
+
+This project demonstrates how SQL can be used not only for data extraction but also for **advanced analytical workflows**, including:
+
+- Trend analysis  
+- Growth measurement  
+- Seasonality detection  
+
+For detailed interpretation, refer to the **Business Insights** section.
+
+---
+
+## 👤 Author
+
+**Saumya**  
+📧 ysaumya195@gmail.com  
+🔗 www.linkedin.com/in/saumya-data-analyst
+
+
+
+
