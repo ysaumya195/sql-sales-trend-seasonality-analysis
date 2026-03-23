@@ -1,3 +1,5 @@
+
+
 # 📊 SQL Sales Trend & Seasonality Analysis
 
 ## 📌 Project Overview
@@ -10,11 +12,10 @@ The objective is to demonstrate how SQL can be used for end-to-end analytical wo
 
 ## 🗂️ Dataset
 
-The analysis is based on the **Superstore Sales Dataset** covering the period:
-
-**2014 – 2017**
-
-**Dataset Size:** ~10,000 rows, 11 columns  
+- File: `data/superstore.csv`  
+- Source: Superstore Sales Dataset  
+- Records: ~10,000 rows  
+- Time Period: 2014 – 2017  
 
 ### Key Fields:
 - order_id  
@@ -49,7 +50,7 @@ Performed initial data exploration to understand structure and quality:
 
 ### 3. Data Cleaning
 - Converted string date fields using `TO_DATE()`  
-- Removed complete duplicate records  
+- Removed duplicate records  
 - Ensured consistency in data types  
 
 ---
@@ -84,9 +85,9 @@ This measures how sales performance changes over time and highlights periods of 
 Identified recurring patterns using **Seasonality Index**:
 
 **Formula:**
-Seasonality Index =
-(Average Daily Revenue for Month / Overall Average Daily Revenue) × 100
 
+Seasonality Index =  
+(Average Daily Revenue for Month / Overall Average Daily Revenue) × 100  
 
 **Interpretation:**
 - Index > 100 → Above-average performance  
@@ -96,14 +97,35 @@ This helps identify high-demand and low-demand periods.
 
 ---
 
-## 🛠️ Tools Used
+## 📊 Key Analysis Outputs
 
-- PostgreSQL  
-- pgAdmin  
-- SQL  
-- GitHub
+### 📈 Monthly Sales Trend
+Displays total monthly revenue over time, forming the baseline for trend analysis.
 
-  ---
+![Monthly Sales](screenshots/monthly_revenue.png)
+
+---
+
+### 📊 Monthly Growth Analysis
+Shows month-over-month growth rate and identifies periods of growth and decline.
+
+![Growth](screenshots/monthly_growth_analysis.png)
+
+---
+
+### 📉 Moving Average
+Applies rolling averages to smooth short-term fluctuations and highlight trends.
+
+![Moving Average](screenshots/trend_analysis_moving_averages.png)
+
+---
+
+### 🔁 Seasonality Index
+Highlights seasonal demand patterns across different months.
+
+![Seasonality](screenshots/monthly_seasonality_index.png)
+
+---
 
 ## 🧠 Key SQL Concepts Used
 
@@ -119,38 +141,52 @@ This helps identify high-demand and low-demand periods.
 
 ## 📈 Key Insights
 
-- Sales are highly volatile with no consistent long-term trend  
-- Revenue growth is irregular, with frequent fluctuations between growth and decline  
-- Performance is driven by intermittent high-revenue periods rather than steady progression  
-- A strong seasonal pattern is observed, with peak demand beginning in **September**  
-- Highest sales performance occurs during **November and December**  
-- Sales activity shows a clear concentration in **late Q3 and Q4**
+- Sales show high volatility with no consistent long-term upward trend  
+- Month-over-month growth fluctuates significantly across the timeline  
+- Revenue is driven by intermittent spikes rather than steady growth  
+- A strong seasonal pattern is observed starting from **September**  
+- Peak sales occur during **November and December**  
+- Sales activity is concentrated in **late Q3 and Q4**  
+
+---
+
 ## 📁 Project Structure
 
-
-sql/
+sql-sales-trend-seasonality-analysis/
 │
-├── 01_data_import.sql
-├── 02_data_profiling.sql
-├── 03_data_cleaning.sql
-├── 04_time_series_preparation.sql
-├── 05_moving_averages.sql
-├── 06_monthly_growth_analysis.sql
-├── 07_seasonality_detection.sql
-├── 08_business_insights.sql
+├── data/
+│ └── superstore.csv
+│
+├── screenshots/
+│ ├── monthly_sales_trend.png
+│ ├── monthly_growth_analysis.png
+│ ├── moving_average.png
+│ └── seasonality_index.png
+│
+├── sql/
+│ ├── 01_data_import.sql
+│ ├── 02_data_profiling.sql
+│ ├── 03_data_cleaning.sql
+│ ├── 04_time_series_preparation.sql
+│ ├── 05_moving_averages.sql
+│ ├── 06_monthly_growth_analysis.sql
+│ ├── 07_seasonality_detection.sql
+│ └── 08_business_insights.sql
+│
+└── README.md
 
 
 ---
 
 ## 🚀 Project Outcome
 
-This project demonstrates how SQL can be used not only for data extraction but also for **advanced analytical workflows**, including:
+This project demonstrates how SQL can be used not only for data extraction but also for advanced analytical workflows, including:
 
 - Trend analysis  
 - Growth measurement  
 - Seasonality detection  
 
-For detailed interpretation, refer to the **Business Insights** section.
+For detailed analysis, refer to the `08_business_insights.sql` file.
 
 ---
 
